@@ -1,0 +1,41 @@
+seed: 3
+cuda: -1
+experiment_tag: ant_ML
+env:
+  env_name: DisabledAnt-v0
+  T: 500
+  state_indices: all
+sac:
+  epochs: 500
+  log_step_interval: 5000
+  update_every: 50
+  update_num: 1
+  random_explore_episodes: 10
+  batch_size: 100
+  lr: 1e-3
+  alpha: 0.2
+  automatic_alpha_tuning: false
+  buffer_size: 1000000
+  num_test_episodes: 10
+expert:
+  samples_episode: 64
+disc: #airl or gail
+  reinit: false
+  model_type: resnet_disc
+  num_layer_blocks: 6
+  hid_dim: 128
+  hid_act: tanh
+  use_bn: false
+  clamp_magnitude: 10.0
+  batch_size: 800
+  lr: 0.0003
+  weight_decay: 0.0001
+  momentum: 0.9
+  iter: 1200
+reward: # from irl model
+  use_bn: false
+  residual: false
+  hid_act: relu
+  hidden_sizes: [128, 128]
+  clamp_magnitude: 10
+  path: ML_t1_300.pkl # demo
