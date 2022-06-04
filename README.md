@@ -22,7 +22,7 @@
 All the commands below are also provided in `run.sh`.
 
 ### Sec 1 IRL benchmark (MuJoCo)
-First, make sure that you have downloaded expert data into `expert_data/`. *Otherwise*, you can generate expert data by training expert policy:
+First, you can generate expert data by training expert policy:
 ```bash
 python common/train_gd.py configs/samples/experts/{env}.yml # env is in {hopper, walker2d, halfcheetah, ant}
 python common/collect.py configs/samples/experts/{env}.yml # env is in {hopper, walker2d, halfcheetah, ant}
@@ -36,7 +36,7 @@ python ml/irl_samples.py configs/samples/agents/{env}.yml
 ```
 
 ### Sec 2 Transfer task
-First, make sure that you have downloaded expert data into `expert_data/`. *Otherwise*, you can generate expert data by training expert policy:
+First, you can generate expert data by training expert policy:
 Make sure that the `env_name` parameter in `configs/samples/experts/ant_transfer.yml` is set to `CustomAnt-v0`
 ```bash
 python common/train_gd.py configs/samples/experts/ant_transfer.yml
