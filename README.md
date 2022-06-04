@@ -1,13 +1,12 @@
 ## MUJOCO DATA COLLECT
-We trained an SAC agent and use it collect expert data.
+We trained a SAC agent and used it to collect expert data.
 You can see the MUJOCO DATA COLLECT part in run.sh to try this.
 
 ## MUJOCO IRL BENCHMARK
 Extract the reward network from the expert data
 
 ## MUJOCO TRANSFER
-Using the reward network do transfer task
-Reward Transfer: use the trained reward network to retrain an SAC agent
+Reward Transfer: Firstly use IRL algorithms to infer the reward functions in Custom-Ant, and then transfer these recovered reward functions to Disabled-Ant for further evaluation.
 Data Transfer: Train IRL agents in Disabled-Ant by using the Custom-Ant expert trajectories
 
 ## files
