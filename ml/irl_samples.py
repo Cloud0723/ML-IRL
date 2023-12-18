@@ -12,9 +12,6 @@ from common.sac import ReplayBuffer, SAC
 
 import envs
 from utils import system, collect, logger, eval
-from utils.plots.train_plot_high_dim import plot_disc
-from utils.plots.train_plot import plot_disc as visual_disc
-
 import datetime
 import dateutil.tz
 import json, copy
@@ -81,14 +78,6 @@ def try_evaluate(itr: int, policy_type: str, sac_info):
     print(f"real sto return avg: {real_return_sto:.2f}")
     logger.record_tabular("Real Sto Return", round(real_return_sto, 2))
 
-    if v['obj'] in ["emd"]:
-        eval_len = int(0.1 * len(critic_loss["main"]))
-        emd = -np.array(critic_loss["main"][-eval_len:]).mean()
-        metrics['emd'] = emd
-        logger.record_tabular(f"{policy_type} EMD", emd)
-    
-    # plot_disc(v['obj'], log_folder, env_steps, 
-    #     sac_info, critic_loss if v['obj'] in ["emd"] else disc_loss, metrics)
 
     logger.record_tabular(f"{policy_type} Update Time", update_time)
     logger.record_tabular(f"{policy_type} Env Steps", env_steps)
@@ -143,10 +132,13 @@ if __name__ == "__main__":
         state_indices = list(range(state_size))
 
     # load expert samples from trained policy
-    expert_trajs = torch.load(f'expert_data/states/{env_name}.pt').numpy()[:, :, state_indices]
+    #expert_trajs = torch.load(f'expert_data/states/{env_name}.pt').numpy()[:, :, state_indices]
+    env_name=env_name.split('-')[0]
+    expert_trajs = np.load(f'expert_data/{env_name}/states.npy')
     expert_trajs = expert_trajs[:num_expert_trajs, :, :] # select first expert_episodes
     expert_samples = expert_trajs.copy().reshape(-1, len(state_indices))
-    expert_a = torch.load(f'expert_data/actions/{env_name}.pt').numpy()[:, :, :]
+    #expert_a = torch.load(f'expert_data/actions/{env_name}.pt').numpy()[:, :, :]
+    expert_a = np.load(f'expert_data/{env_name}/actions.npy')
     expert_a = expert_a[:num_expert_trajs, :, :] # select first expert_episodes
     expert_a_samples = expert_a.copy().reshape(-1, action_size)
     expert_samples_sa=np.concatenate([expert_samples,expert_a_samples],1)
@@ -198,11 +190,6 @@ if __name__ == "__main__":
         # print(agent_emp_states.shape)
 
         start = time.time()
-        if v['obj'] in ["emd"]:
-            critic_loss = critic.learn(expert_samples.copy(), agent_emp_states, iter=v['critic']['iter'])
-        elif v['obj'] != 'maxentirl': # learn log density ratio
-            disc_loss = disc.learn(expert_samples.copy(), agent_emp_states, iter=v['disc']['iter'])
-        print(f'train disc {time.time() - start:.0f}s', flush=True)
 
         # optimization w.r.t. reward
         reward_losses = []
