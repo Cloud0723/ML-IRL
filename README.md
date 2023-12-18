@@ -1,3 +1,6 @@
+# Maximum-Likelihood Inverse Reinforcement Learning with Finite-Time Guarantees
+ML-IRL is an algorithm for inverse reinforcement learning that is discussed in the article [link](https://proceedings.neurips.cc/paper_files/paper/2022/file/41bd71e7bf7f9fe68f1c936940fd06bd-Paper-Conference.pdf)
+
 ## Installation
 - PyTorch 1.5+
 - OpenAI Gym
