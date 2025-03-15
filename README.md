@@ -18,7 +18,7 @@ You can download our expert data from the [google_drive](https://drive.google.co
 ## Instructions
 - All the experiments are to be run under the root folder. 
 - Before starting experiments, please `export PYTHONPATH=${PWD}:$PYTHONPATH` for env variable. 
-- We use yaml files in `configs/` for experimental configurations, please change `obj` value (in the first line) for each method, here is the list of `obj` values:
+- We use yaml files in `configs/` for experimental configurations, Please change `obj` value (in the first line) for each method, here is the list of `obj` values:
     -  Our methods (ML-IRL): ML_S: `maxentirl`, ML_SA: `maxentirl_sa`
 - After running, you will see the training logs in `logs/` folder.
 
@@ -32,7 +32,7 @@ python common/train_gd.py configs/samples/experts/{env}.yml # env is in {hopper,
 python common/collect.py configs/samples/experts/{env}.yml # env is in {hopper, walker2d, halfcheetah, ant}
 ```
 
-Then train our method with provided expert data method (Policy Performance).
+Then train our method with the provided expert data method (Policy Performance).
 
 ```bash
 # you can vary obj in {`maxentirl_sa`, `maxentirl`}
@@ -40,7 +40,7 @@ python ml/irl_samples.py configs/samples/agents/{env}.yml
 ```
 
 ### Sec 2 Transfer task
-First, you can generate expert data by training expert policy:
+First, you can generate expert data by training expert policy.
 Make sure that the `env_name` parameter in `configs/samples/experts/ant_transfer.yml` is set to `CustomAnt-v0`
 ```bash
 python common/train_gd.py configs/samples/experts/ant_transfer.yml
