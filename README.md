@@ -1,5 +1,5 @@
 # Maximum-Likelihood Inverse Reinforcement Learning with Finite-Time Guarantees
-ML-IRL is an algorithm for inverse reinforcement learning that is discussed in the article [link](https://proceedings.neurips.cc/paper_files/paper/2022/file/41bd71e7bf7f9fe68f1c936940fd06bd-Paper-Conference.pdf)
+ML-IRL is an algorithm for inverse reinforcement learning that is discussed in the article [link](https://proceedings.neurips.cc/paper_files/paper/2022/file/41bd71e7bf7f9fe68f1c936940fd06bd-Paper-Conference.pdf) and [link](https://openreview.net/forum?id=j4CbQGb0iF&referrer=%5Bthe%20profile%20of%20Chenliang%20Li%5D(%2Fprofile%3Fid%3D~Chenliang_Li3))
 
 You can download our expert data from the [google_drive](https://drive.google.com/drive/folders/1qD8mLj4MDuH5TFR6c2fwNrfuZF3RR5QA?usp=drive_link)
 ## Installation
